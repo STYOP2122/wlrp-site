@@ -1,0 +1,88 @@
+/* Westland Project brand — accents only; keep original section backgrounds */
+:root {
+  --wl-bg: #0a0c0e;
+  --wl-bg-2: #12151a;
+  --wl-ink: #ffffff;
+  --wl-muted: #9aa3ad;
+  --wl-line: rgba(255, 255, 255, 0.14);
+  --wl-accent: #e8eef5;
+  --wl-accent-soft: rgba(232, 238, 245, 0.16);
+  --wl-warm: #c4a574;
+  --wl-grad: linear-gradient(90deg, #f2f5f8 0%, #c9d2dc 100%);
+  --wl-grad-warm: linear-gradient(90deg, #d9b07a 0%, #f0e2c8 100%);
+}
+
+/* Soften old orange brand accents toward Westland white/steel */
+.gradient_btn__orange,
+.btn.gradient_btn__orange,
+.primary_btn.gradient_btn__orange,
+.btn_rond_orange {
+  background: var(--wl-grad) !important;
+  color: #0a0c0e !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45) !important;
+  border: 0 !important;
+}
+.gradient_btn__orange:hover,
+.primary_btn.gradient_btn__orange:hover {
+  background-size: 200% auto !important;
+  filter: brightness(1.05);
+  box-shadow: none !important;
+}
+
+.nav__link.active,
+.nav__link:hover {
+  color: #fff !important;
+}
+.nav__link.active:after,
+.header .nav__link.active:before,
+.nav__link:hover:after {
+  background: #fff !important;
+  background-image: none !important;
+}
+
+.logo {
+  background: url('../images/logo.png') no-repeat left center / contain !important;
+  width: 200px !important;
+  height: 44px !important;
+  display: block !important;
+}
+
+@media (min-width: 1200px) {
+  .logo {
+    width: 230px !important;
+    height: 50px !important;
+  }
+}
+
+.content__slide_home .h1,
+.content__slide_home .home__title {
+  color: #fff !important;
+}
+
+.content__slide_home .h2__home {
+  color: var(--wl-muted) !important;
+}
+
+/* Play cards accents */
+.container_item__play .block__content span {
+  border-left-color: #c4a574 !important;
+}
+
+.footer-follow__card:hover {
+  border-color: rgba(232, 238, 245, 0.45) !important;
+}
+.footer-follow__card:hover .footer-follow__cta {
+  background: var(--wl-grad) !important;
+  color: #0a0c0e !important;
+  border-color: transparent !important;
+}
+.footer-follow__links a:hover {
+  color: #e8eef5 !important;
+}
+
+/* Donate accents if page loaded */
+.donate-page {
+  --don-accent: #e8eef5;
+  --don-accent-2: #c4a574;
+  --don-grad: linear-gradient(90deg, #f2f5f8, #c9d2dc);
+}
