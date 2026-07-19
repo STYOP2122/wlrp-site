@@ -837,11 +837,21 @@ onUnmounted(() => {
     overflow: visible;
   }
 
+  .donate-title {
+    font-size: clamp(28px, 9vw, 40px);
+    margin-bottom: 20px;
+  }
+
   .donate-grid {
     grid-template-columns: 1fr;
     max-width: 420px;
     margin: 0 auto;
     flex: none;
+    gap: 20px;
+  }
+
+  .donate-side {
+    overflow: visible;
   }
 
   .donate-side--right {
@@ -862,6 +872,11 @@ onUnmounted(() => {
 
   .currency-row {
     grid-template-columns: 1fr;
+  }
+
+  .donate-main {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
 </style>

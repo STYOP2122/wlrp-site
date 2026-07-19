@@ -12,12 +12,26 @@ const scrolled = ref(false)
 
 const isDonate = () => route.path.startsWith('/donate')
 
+function setMenuLock(open) {
+  if (open) {
+    document.body.style.overflow = 'hidden'
+    return
+  }
+  // Don't clear overflow if desktop fullpage owns it
+  const desktop =
+    window.matchMedia('all and (min-width: 1367px)').matches &&
+    window.matchMedia('all and (min-height: 797px)').matches
+  document.body.style.overflow = desktop ? 'hidden' : ''
+}
+
 function toggleMenu() {
   menuOpen.value = !menuOpen.value
+  setMenuLock(menuOpen.value)
 }
 
 function closeMenu() {
   menuOpen.value = false
+  setMenuLock(false)
 }
 
 async function go(section) {
@@ -48,6 +62,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('scroll', onScroll)
+  setMenuLock(false)
 })
 </script>
 

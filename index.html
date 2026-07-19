@@ -16,6 +16,7 @@
     <link href="/css/slick_v_4.css" rel="stylesheet" />
     <link href="/css/main_v_4.css" rel="stylesheet" />
     <link href="/css/westland-brand.css" rel="stylesheet" />
+    <link href="/css/westland-mobile.css" rel="stylesheet" />
     <link href="/css/themes/semantic.rtl.min_v_4.css" rel="stylesheet" />
     <link href="/css/slick-theme_v_4.css" rel="stylesheet" />
     <link href="/css/fm.revealator.jquery_v_4.css" rel="stylesheet" />
@@ -98,6 +99,12 @@
         width: 100%;
         height: 100%;
         overflow: hidden;
+      }
+      @media screen and (max-width: 1366px), screen and (max-height: 796px) {
+        #app {
+          height: auto;
+          overflow: visible;
+        }
       }
       html,
       body {
@@ -583,73 +590,6 @@
         }
         .footer-follow__links a:hover {
           color: #ffa970;
-        }
-      }
-      @media screen and (max-width: 1024px) {
-        .footer-follow {
-          padding: 24px 0 40px;
-        }
-        .footer-follow__title {
-          font-family: UniNeueHeavy, sans-serif;
-          font-size: 32px;
-          margin: 0 0 8px;
-        }
-        .footer-follow__lead {
-          margin: 0 0 20px;
-          color: #9a93d0;
-        }
-        .footer-follow__grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 12px;
-        }
-        .footer-follow__card {
-          padding: 18px;
-          border-radius: 12px;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          background: rgba(255, 255, 255, 0.06);
-        }
-        .footer-follow__icon {
-          width: 48px;
-          margin-bottom: 10px;
-        }
-        .footer-follow__name {
-          font-weight: 700;
-          margin-bottom: 6px;
-        }
-        .footer-follow__text {
-          margin: 0 0 12px;
-          color: #9a93d0;
-          font-size: 14px;
-        }
-        .footer-follow__cta {
-          align-self: flex-start;
-          padding: 10px 16px;
-          border-radius: 999px;
-          border: 1px solid rgba(255, 255, 255, 0.35);
-          font-size: 13px;
-        }
-        .footer-follow__legal {
-          margin-top: 28px;
-          padding-top: 16px;
-          border-top: 1px solid rgba(255, 255, 255, 0.12);
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
-        .footer-follow__logo {
-          height: 24px;
-          margin-bottom: 8px;
-        }
-        .footer-follow__brand p,
-        .footer-follow__links a {
-          font-size: 12px;
-          color: rgba(255, 255, 255, 0.65);
-        }
-        .footer-follow__links {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
         }
       }
       @media screen and (min-width: 1025px) and (max-height: 800px) {

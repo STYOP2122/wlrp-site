@@ -18,8 +18,28 @@ function clearLocationHash() {
   }
 }
 
+function scrollToSection(anchorOrIndex) {
+  let el = null
+  if (typeof anchorOrIndex === 'number') {
+    const sections = document.querySelectorAll('#fullpage .section')
+    el = sections[anchorOrIndex - 1] || sections[anchorOrIndex] || null
+  } else {
+    el =
+      document.querySelector(`#fullpage .section[data-anchor="${anchorOrIndex}"]`) ||
+      document.getElementById(anchorOrIndex)
+  }
+  if (!el) return
+  const headerOffset = 72
+  const top = el.getBoundingClientRect().top + window.pageYOffset - headerOffset
+  window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' })
+}
+
 export function goToSection(anchorOrIndex) {
-  window.fullpage_api?.moveTo(anchorOrIndex)
+  if (isDesktopFullpage() && window.fullpage_api) {
+    window.fullpage_api.moveTo(anchorOrIndex)
+    return
+  }
+  scrollToSection(anchorOrIndex)
 }
 
 export function useFullpage(containerSelector = '#fullpage') {
@@ -37,6 +57,13 @@ export function useFullpage(containerSelector = '#fullpage') {
     initialized = false
   }
 
+  function resetSectionStyles() {
+    document.querySelectorAll('#fullpage .section').forEach((section) => {
+      section.style.height = ''
+      section.style.overflow = ''
+    })
+  }
+
   function init() {
     const el = document.querySelector(containerSelector)
     if (!el) return
@@ -51,6 +78,10 @@ export function useFullpage(containerSelector = '#fullpage') {
     document.body.style.overflow = desktop ? 'hidden' : ''
     document.documentElement.style.height = desktop ? '100%' : ''
     document.body.style.height = desktop ? '100%' : ''
+
+    if (!desktop) {
+      resetSectionStyles()
+    }
 
     fullpage(containerSelector, {
       licenseKey: FULLPAGE_LICENSE,
@@ -69,6 +100,10 @@ export function useFullpage(containerSelector = '#fullpage') {
       menu: '#myMenu',
       credits: { enabled: false },
       afterRender() {
+        if (!isDesktopFullpage()) {
+          resetSectionStyles()
+          return
+        }
         document.querySelectorAll('#fullpage .section').forEach((section) => {
           section.style.height = `${window.innerHeight}px`
           section.style.overflow = section.classList.contains('content__slide_home')
@@ -79,8 +114,8 @@ export function useFullpage(containerSelector = '#fullpage') {
         window.dispatchEvent(new Event('resize'))
       },
       afterLoad(_origin, destination) {
+        if (!isDesktopFullpage()) return
         window.dispatchEvent(new Event('resize'))
-        // Ensure last section is reachable / fully shown
         if (destination?.anchor === 'footer') {
           window.dispatchEvent(new Event('resize'))
         }
@@ -89,6 +124,10 @@ export function useFullpage(containerSelector = '#fullpage') {
     initialized = true
     clearLocationHash()
     window.setTimeout(() => {
+      if (!isDesktopFullpage()) {
+        resetSectionStyles()
+        return
+      }
       window.fullpage_api?.reBuild()
       window.dispatchEvent(new Event('resize'))
     }, 300)
@@ -118,6 +157,10 @@ export function useFullpage(containerSelector = '#fullpage') {
   onUnmounted(() => {
     window.removeEventListener('resize', onResize)
     destroy()
+    document.documentElement.style.overflow = ''
+    document.body.style.overflow = ''
+    document.documentElement.style.height = ''
+    document.body.style.height = ''
   })
 
   return { reinit: init }
