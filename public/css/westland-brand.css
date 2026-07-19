@@ -2,6 +2,8 @@
 @media screen and (min-width: 1025px) {
   .pxl {
     display: flex !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
   }
   .per__main {
     display: block !important;
@@ -21,6 +23,24 @@
   .content__slide_home .h1 {
     font-size: clamp(42px, 6.2vh, 72px) !important;
   }
+  /* Content above parallax layers */
+  .slide-content,
+  .slide-content_about,
+  .slide-content_playing,
+  .slide-content_news,
+  .slide-content_footer,
+  .footer-follow {
+    position: relative;
+    z-index: 2 !important;
+  }
+}
+
+/* fullpage wrapper must grow with sections — height:100% clips everything after home */
+#fullpage,
+.fullpage-wrapper,
+.content.fullpage-wrapper {
+  height: auto !important;
+  overflow: visible !important;
 }
 
 :root {

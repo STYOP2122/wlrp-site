@@ -119,12 +119,20 @@
         height: 100%;
         overflow: hidden;
       }
-      /* Prevent horizontal scroll from absolute art / dialogs */
+      /* Prevent horizontal scroll — NEVER on #fullpage (overflow-x:hidden
+         forces overflow-y:auto and clips all sections except the first) */
       .layout,
-      .layout__content,
-      #fullpage {
+      .layout__content {
         max-width: 100%;
         overflow-x: hidden;
+      }
+      #fullpage,
+      .fullpage-wrapper,
+      .content.fullpage-wrapper {
+        max-width: 100%;
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
       }
       .fp-section,
       .section {
