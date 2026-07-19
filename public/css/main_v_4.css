@@ -3419,7 +3419,7 @@ footer {
 		transform: scale(0.9);
 }
 }
-@media screen and (max-width: 1366px), screen and (max-height: 890px) {
+@media screen and (max-width: 1024px) {
 .sokolyanskiy {
     width: 95%;
 
@@ -3590,7 +3590,7 @@ footer {
 }
 
 
-@media screen and (max-width: 768px), screen and (max-width: 1024px), screen and (min-device-width: 1024px) and (max-device-width: 1336px), screen and (max-height: 797px) {
+@media screen and (max-width: 1024px) {
 .slide-content__content-side.promo .md_r {
     top: 0px;
 }

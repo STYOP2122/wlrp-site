@@ -1,12 +1,6 @@
 import { nextTick, onMounted, onUnmounted } from 'vue'
 import Parallax from 'parallax-js'
-
-function isDesktopFullpage() {
-  return (
-    window.matchMedia('all and (min-width: 1367px)').matches &&
-    window.matchMedia('all and (min-height: 797px)').matches
-  )
-}
+import { isDesktopLayout } from '../utils/breakpoints'
 
 export function useParallax(ids = ['scene', 'scene2']) {
   const instances = []
@@ -25,7 +19,7 @@ export function useParallax(ids = ['scene', 'scene2']) {
 
   function init() {
     destroy()
-    if (!isDesktopFullpage()) return
+    if (!isDesktopLayout()) return
 
     ids.forEach((id) => {
       const el = document.getElementById(id)

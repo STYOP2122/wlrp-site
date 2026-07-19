@@ -1,15 +1,9 @@
 import { nextTick, onMounted, onUnmounted } from 'vue'
 import fullpage from 'fullpage.js'
 import { FULLPAGE_LICENSE } from '../config/servers'
+import { isDesktopLayout } from '../utils/breakpoints'
 
 const ANCHORS = ['home', 'about-the-project', 'How-to-start-playing', 'news', 'footer']
-
-function isDesktopFullpage() {
-  return (
-    window.matchMedia('all and (min-width: 1367px)').matches &&
-    window.matchMedia('all and (min-height: 797px)').matches
-  )
-}
 
 function clearLocationHash() {
   const { pathname, search } = window.location
@@ -35,7 +29,7 @@ function scrollToSection(anchorOrIndex) {
 }
 
 export function goToSection(anchorOrIndex) {
-  if (isDesktopFullpage() && window.fullpage_api) {
+  if (isDesktopLayout() && window.fullpage_api) {
     window.fullpage_api.moveTo(anchorOrIndex)
     return
   }
@@ -70,10 +64,9 @@ export function useFullpage(containerSelector = '#fullpage') {
 
     destroy()
     clearLocationHash()
-    const desktop = isDesktopFullpage()
+    const desktop = isDesktopLayout()
     wasDesktop = desktop
 
-    // Allow normal page scroll when fullpage auto-scroll is off
     document.documentElement.style.overflow = desktop ? 'hidden' : ''
     document.body.style.overflow = desktop ? 'hidden' : ''
     document.documentElement.style.height = desktop ? '100%' : ''
@@ -100,7 +93,7 @@ export function useFullpage(containerSelector = '#fullpage') {
       menu: '#myMenu',
       credits: { enabled: false },
       afterRender() {
-        if (!isDesktopFullpage()) {
+        if (!isDesktopLayout()) {
           resetSectionStyles()
           return
         }
@@ -114,7 +107,7 @@ export function useFullpage(containerSelector = '#fullpage') {
         window.dispatchEvent(new Event('resize'))
       },
       afterLoad(_origin, destination) {
-        if (!isDesktopFullpage()) return
+        if (!isDesktopLayout()) return
         window.dispatchEvent(new Event('resize'))
         if (destination?.anchor === 'footer') {
           window.dispatchEvent(new Event('resize'))
@@ -124,7 +117,7 @@ export function useFullpage(containerSelector = '#fullpage') {
     initialized = true
     clearLocationHash()
     window.setTimeout(() => {
-      if (!isDesktopFullpage()) {
+      if (!isDesktopLayout()) {
         resetSectionStyles()
         return
       }
@@ -135,7 +128,7 @@ export function useFullpage(containerSelector = '#fullpage') {
 
   function onResize() {
     if (!document.querySelector(containerSelector)) return
-    const desktop = isDesktopFullpage()
+    const desktop = isDesktopLayout()
     if (!initialized) {
       init()
       return

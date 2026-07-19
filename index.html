@@ -100,7 +100,7 @@
         height: 100%;
         overflow: hidden;
       }
-      @media screen and (max-width: 1366px), screen and (max-height: 796px) {
+      @media screen and (max-width: 1024px) {
         #app {
           height: auto;
           overflow: visible;
@@ -130,55 +130,52 @@
       .section {
         max-width: 100%;
       }
-      .content__slide_home,
-      .content__slide__about,
-      .content__slide__playing,
-      .content__slide__news,
-      .content__slide__footer {
-        height: 100vh !important;
-        height: 100dvh !important;
-        max-height: 100dvh;
-      }
-      /* Home: keep characters visible, clip only sideways at page level */
-      .content__slide_home {
-        overflow: visible !important;
-      }
-      .content__slide__about,
-      .content__slide__news,
-      .content__slide__footer {
-        overflow-x: hidden !important;
-        overflow-y: hidden !important;
-      }
-      /*
-        fullpage.js v4 uses .fp-table { display:flex }
-        Legacy CSS used display:table — keep flex.
-      */
-      .fp-section.fp-table,
-      .fp-slide.fp-table {
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center;
-        width: 100%;
-      }
-      .content__slide__playing.fp-section.fp-table,
-      .content__slide__news.fp-section.fp-table,
-      .content__slide__footer.fp-section.fp-table {
-        justify-content: flex-start !important;
-      }
-      .content__slide__playing .fp-tableCell,
-      .content__slide__news .fp-tableCell,
-      .content__slide__footer .fp-tableCell {
-        display: block !important;
-        height: 100% !important;
-        overflow: hidden !important;
-        vertical-align: top;
-      }
-      /* Play / news / footer: clip overflow; JS soft-scales if still tall */
-      .content__slide__playing,
-      .content__slide__news,
-      .content__slide__footer {
-        overflow: hidden !important;
-        box-sizing: border-box;
+      /* Fullpage section sizing — desktop only */
+      @media screen and (min-width: 1025px) {
+        .content__slide_home,
+        .content__slide__about,
+        .content__slide__playing,
+        .content__slide__news,
+        .content__slide__footer {
+          height: 100vh !important;
+          height: 100dvh !important;
+          max-height: 100dvh;
+        }
+        .content__slide_home {
+          overflow: visible !important;
+        }
+        .content__slide__about,
+        .content__slide__news,
+        .content__slide__footer {
+          overflow-x: hidden !important;
+          overflow-y: hidden !important;
+        }
+        .fp-section.fp-table,
+        .fp-slide.fp-table {
+          display: flex !important;
+          flex-direction: column !important;
+          justify-content: center;
+          width: 100%;
+        }
+        .content__slide__playing.fp-section.fp-table,
+        .content__slide__news.fp-section.fp-table,
+        .content__slide__footer.fp-section.fp-table {
+          justify-content: flex-start !important;
+        }
+        .content__slide__playing .fp-tableCell,
+        .content__slide__news .fp-tableCell,
+        .content__slide__footer .fp-tableCell {
+          display: block !important;
+          height: 100% !important;
+          overflow: hidden !important;
+          vertical-align: top;
+        }
+        .content__slide__playing,
+        .content__slide__news,
+        .content__slide__footer {
+          overflow: hidden !important;
+          box-sizing: border-box;
+        }
       }
       .fp-watermark {
         display: none !important;
@@ -614,7 +611,7 @@
         }
       }
       /* Home spacing + server card internals */
-      @media (min-width: 1200px) {
+      @media (min-width: 1025px) {
         .slide-content.slide-content_home.container {
           height: 100%;
           box-sizing: border-box;
@@ -748,7 +745,7 @@
           transform-origin: right bottom;
         }
       }
-      @media (min-width: 1200px) and (max-height: 820px) {
+      @media (min-width: 1025px) and (max-height: 820px) {
         .content__slide_home .home__title.h1 {
           font-size: clamp(36px, 5.4vh, 56px) !important;
         }
@@ -796,7 +793,7 @@
         }
       }
       /* About section: keep tabs/buttons below header */
-      @media (min-width: 1200px) {
+      @media (min-width: 1025px) {
         .slide-content.slide-content_about.container {
           height: 100%;
           box-sizing: border-box;

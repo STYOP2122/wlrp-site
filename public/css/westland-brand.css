@@ -1,4 +1,28 @@
-/* Westland Project brand — accents only; keep original section backgrounds */
+/* Desktop: force art visible (legacy CSS used to hide it on short/laptop viewports) */
+@media screen and (min-width: 1025px) {
+  .pxl {
+    display: flex !important;
+  }
+  .per__main {
+    display: block !important;
+  }
+  .dialog__left,
+  .dialog__right {
+    display: block !important;
+  }
+  .slide-main__bg {
+    display: block !important;
+  }
+  .content__slide_home .slick-slide {
+    display: block !important;
+  }
+  /* Kill legacy 130px title on laptop CSS */
+  .content__slide_home .home__title.h1,
+  .content__slide_home .h1 {
+    font-size: clamp(42px, 6.2vh, 72px) !important;
+  }
+}
+
 :root {
   --wl-bg: #0a0c0e;
   --wl-bg-2: #12151a;

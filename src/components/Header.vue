@@ -3,6 +3,7 @@ import { nextTick, onMounted, onUnmounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { goToSection } from '../composables/useFullpage'
 import { asset } from '../utils/asset'
+import { isDesktopLayout } from '../utils/breakpoints'
 
 const emit = defineEmits(['toast'])
 const route = useRoute()
@@ -20,11 +21,7 @@ function setMenuLock(open) {
     document.body.style.overflow = 'hidden'
     return
   }
-  // Don't clear overflow if desktop fullpage owns it
-  const desktop =
-    window.matchMedia('all and (min-width: 1367px)').matches &&
-    window.matchMedia('all and (min-height: 797px)').matches
-  document.body.style.overflow = desktop ? 'hidden' : ''
+  document.body.style.overflow = isDesktopLayout() ? 'hidden' : ''
 }
 
 function toggleMenu() {

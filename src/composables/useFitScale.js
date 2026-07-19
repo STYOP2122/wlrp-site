@@ -1,11 +1,5 @@
 import { nextTick, onMounted, onUnmounted } from 'vue'
-
-function isDesktopFullpage() {
-  return (
-    window.matchMedia('all and (min-width: 1367px)').matches &&
-    window.matchMedia('all and (min-height: 797px)').matches
-  )
-}
+import { isDesktopLayout } from '../utils/breakpoints'
 
 /**
  * Soft fit: shrink content so it fits inside the section (desktop fullpage only).
@@ -22,7 +16,7 @@ export function useFitScale(sectionSelector, contentSelector, options = {}) {
     const content = document.querySelector(contentSelector)
     if (!section || !content) return
 
-    if (!isDesktopFullpage()) {
+    if (!isDesktopLayout()) {
       content.style.transform = 'none'
       return
     }

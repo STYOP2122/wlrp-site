@@ -6,8 +6,8 @@
  * 2) Phone/tablet (≤1024px): stacked mobile layout.
  */
 
-/* —— Unlock scroll when fullpage auto-scroll is off —— */
-@media screen and (max-width: 1366px), screen and (max-height: 796px) {
+/* Unlock scroll + layout only on phone/tablet — never on PC */
+@media screen and (max-width: 1024px) {
   html,
   body {
     height: auto !important;
