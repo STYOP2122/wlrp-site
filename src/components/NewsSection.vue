@@ -1,25 +1,26 @@
 <script setup>
 import { useFitScale } from '../composables/useFitScale'
 import { BRAND } from '../config/servers'
+import { asset } from '../utils/asset'
 
 useFitScale('.content__slide__news', '.slide-content_news')
 
 const news = [
   {
     href: BRAND.vk,
-    img: '/images/content/april.png',
+    img: asset('images/content/april.png'),
     title: 'Запуск Westland Project',
     date: '13.07.2026',
   },
   {
     href: BRAND.vk,
-    img: '/images/content/casino.png',
+    img: asset('images/content/casino.png'),
     title: 'Открытие набора во фракции',
     date: '10.07.2026',
   },
   {
     href: BRAND.vk,
-    img: '/images/content/pomoi_ostrafui.png',
+    img: asset('images/content/pomoi_ostrafui.png'),
     title: 'Ивенты этой недели',
     date: '05.07.2026',
   },

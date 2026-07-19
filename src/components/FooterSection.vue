@@ -1,13 +1,14 @@
 <script setup>
 import { useFitScale } from '../composables/useFitScale'
 import { BRAND } from '../config/servers'
+import { asset } from '../utils/asset'
 
 useFitScale('.content__slide__footer', '.footer-follow', { minScale: 0.78 })
 
 const contacts = [
   {
     href: BRAND.vk,
-    img: '/images/vk.png',
+    img: asset('images/vk.png'),
     alt: 'vk',
     title: 'Группа ВКонтакте',
     text: 'Новости проекта, скрины и общение с игроками.',
@@ -15,7 +16,7 @@ const contacts = [
   },
   {
     href: BRAND.site,
-    img: '/images/logo_white.png',
+    img: asset('images/logo_white.png'),
     alt: 'site',
     title: 'Официальный сайт',
     text: 'westland.fun — главная точка входа в проект.',
@@ -23,7 +24,7 @@ const contacts = [
   },
   {
     href: BRAND.discord,
-    img: '/images/discord.png',
+    img: asset('images/discord.png'),
     alt: 'discord',
     title: 'Discord',
     text: 'Голос, тикеты и комьюнити Westland.',
@@ -31,7 +32,7 @@ const contacts = [
   },
   {
     href: BRAND.vk,
-    img: '/images/vk.png',
+    img: asset('images/vk.png'),
     alt: 'vk-chat',
     title: 'Общение VK',
     text: 'Быстрые новости и ответы по серверу.',

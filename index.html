@@ -31,7 +31,7 @@
         border-radius: 6px;
       }
       .container_item__play:nth-child(3) .btn__play {
-        pointer-events: none;
+        pointer-events: auto;
       }
       .video-modal-overlay {
         position: fixed;
@@ -776,14 +776,24 @@
         z-index: 1000 !important;
         pointer-events: none;
       }
-      .layout__header .header,
+      /* Only interactive chrome captures clicks — not the full-screen menu shell */
       .layout__header .header__content,
-      .layout__header .header__links,
-      .layout__header .nav__link,
       .layout__header .logo,
       .layout__header .bars,
-      .layout__header .header__bars {
+      .layout__header .header__bars,
+      .layout__header .nav__link {
         pointer-events: auto;
+      }
+      .layout__header .header__links {
+        pointer-events: none;
+      }
+      .layout__header .header__links.active {
+        pointer-events: auto;
+      }
+      @media (min-width: 1200px) {
+        .layout__header .header__links {
+          pointer-events: auto;
+        }
       }
       /* About section: keep tabs/buttons below header */
       @media (min-width: 1200px) {

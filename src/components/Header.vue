@@ -2,6 +2,7 @@
 import { nextTick, onMounted, onUnmounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { goToSection } from '../composables/useFullpage'
+import { asset } from '../utils/asset'
 
 const emit = defineEmits(['toast'])
 const route = useRoute()
@@ -9,6 +10,8 @@ const router = useRouter()
 
 const menuOpen = ref(false)
 const scrolled = ref(false)
+const homeHref = asset('')
+const donateHref = asset('donate')
 
 const isDonate = () => route.path.startsWith('/donate')
 
@@ -72,7 +75,7 @@ onUnmounted(() => {
       <div class="header" id="myMenu" :class="{ scrolled }">
         <div class="header__content">
           <div class="header__logo">
-            <a class="logo active" href="/" @click.prevent="go('home')"></a>
+            <a class="logo active" :href="homeHref" @click.prevent="go('home')"></a>
           </div>
           <div class="header__bars">
             <div
@@ -89,28 +92,28 @@ onUnmounted(() => {
               <a
                 class="nav__link"
                 data-menuanchor="home"
-                href="/"
+                :href="homeHref"
                 @click.prevent="go('home')"
                 >Главная</a
               >
               <a
                 class="nav__link"
                 data-menuanchor="about-the-project"
-                href="/"
+                :href="homeHref"
                 @click.prevent="go('about-the-project')"
                 >О проекте</a
               >
               <a
                 class="nav__link"
                 data-menuanchor="How-to-start-playing"
-                href="/"
+                :href="homeHref"
                 @click.prevent="go('How-to-start-playing')"
                 >Как играть ?</a
               >
               <a
                 class="nav__link"
                 data-menuanchor="news"
-                href="/"
+                :href="homeHref"
                 @click.prevent="go('news')"
                 >Новости</a
               >
@@ -120,14 +123,14 @@ onUnmounted(() => {
               <a
                 class="nav__link nav__link_donate"
                 :class="{ active: isDonate() }"
-                href="/donate"
+                :href="donateHref"
                 @click="onDonate"
                 >Донат</a
               >
               <a
                 class="nav__link nav__link_donate__mob"
                 :class="{ active: isDonate() }"
-                href="/donate"
+                :href="donateHref"
                 @click="onDonate"
                 >Донат</a
               >

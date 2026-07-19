@@ -1,8 +1,12 @@
 /**
- * Westland — mobile / tablet layout
- * Matches fullpage desktop gate: < 1367px OR < 797px height → free scroll
+ * Westland responsive styles
+ *
+ * 1) Fullpage-off (narrow OR short viewport): unlock normal scroll only —
+ *    keep desktop art/layout so laptops are not forced into "phone mode".
+ * 2) Phone/tablet (≤1024px): stacked mobile layout.
  */
 
+/* —— Unlock scroll when fullpage auto-scroll is off —— */
 @media screen and (max-width: 1366px), screen and (max-height: 796px) {
   html,
   body {
@@ -57,7 +61,17 @@
     overflow: visible !important;
   }
 
-  /* Decorative desktop art */
+  .slide-content.slide-content_playing.container.wrapper,
+  .slide-content.slide-content_news.container,
+  .slide-content.slide-content_footer.container.wrapper,
+  .footer-follow {
+    transform: none !important;
+  }
+}
+
+/* —— Real mobile / tablet layout —— */
+@media screen and (max-width: 1024px) {
+  /* Decorative desktop art — phones only */
   .pxl,
   .per__main,
   .dialog__left,
@@ -66,20 +80,6 @@
   .news__img,
   #redage_slide {
     display: none !important;
-  }
-
-  .layout__header {
-    pointer-events: none;
-  }
-
-  .layout__header .header,
-  .layout__header .header__content,
-  .layout__header .header__links,
-  .layout__header .nav__link,
-  .layout__header .logo,
-  .layout__header .bars,
-  .layout__header .header__bars {
-    pointer-events: auto;
   }
 
   .logo {
@@ -259,10 +259,6 @@
     width: 100% !important;
   }
 
-  .content__slide__about .about_tabs {
-    width: 100%;
-  }
-
   #tabs .ui-tabs-nav {
     display: flex;
     justify-content: center;
@@ -320,7 +316,6 @@
     box-sizing: border-box !important;
     padding: 88px 20px 48px !important;
     display: block !important;
-    transform: none !important;
   }
 
   .playing.slide-content__content {
@@ -412,6 +407,8 @@
     padding: 14px !important;
     font-size: 14px !important;
     border-radius: 0 0 12px 12px;
+    pointer-events: auto !important;
+    cursor: pointer;
   }
 
   /* —— News —— */
@@ -420,7 +417,6 @@
     max-width: 100% !important;
     box-sizing: border-box !important;
     padding: 88px 20px 48px !important;
-    transform: none !important;
   }
 
   .news.slide-content__content.wrapper {
@@ -460,16 +456,9 @@
   }
 
   .content__slide__news .news__block_card:before,
-  .content__slide__news .news__block_card:after {
-    display: none !important;
-  }
-
+  .content__slide__news .news__block_card:after,
   .content__slide__news .news__block_card .border {
     display: none !important;
-  }
-
-  .content__slide__news .news__block_card .hv {
-    width: 100%;
   }
 
   .content__slide__news .news__block_card img {
@@ -522,7 +511,6 @@
     height: auto !important;
     box-sizing: border-box !important;
     padding: 88px 20px 40px !important;
-    transform: none !important;
   }
 
   .footer-follow {
@@ -530,7 +518,6 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    transform: none !important;
   }
 
   .footer-follow__title {
@@ -603,6 +590,7 @@
     padding: 100px 28px 40px !important;
     background: rgba(8, 10, 12, 0.96) !important;
     overflow-y: auto;
+    pointer-events: auto !important;
   }
 
   .header__links.active .nav {

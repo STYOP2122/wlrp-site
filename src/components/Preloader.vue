@@ -5,17 +5,23 @@ const visible = ref(true)
 const fading = ref(false)
 
 onMounted(() => {
+  let done = false
   const hide = () => {
+    if (done) return
+    done = true
     fading.value = true
     window.setTimeout(() => {
       visible.value = false
-    }, 600)
+    }, 500)
   }
 
+  // Never block the UI if some asset hangs on load
+  window.setTimeout(hide, 1800)
+
   if (document.readyState === 'complete') {
-    window.setTimeout(hide, 500)
+    window.setTimeout(hide, 400)
   } else {
-    window.addEventListener('load', () => window.setTimeout(hide, 500), { once: true })
+    window.addEventListener('load', () => window.setTimeout(hide, 400), { once: true })
   }
 })
 </script>

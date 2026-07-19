@@ -3,6 +3,9 @@ import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import Header from '../components/Header.vue'
 import Toast from '../components/Toast.vue'
 import { SERVERS } from '../config/servers'
+import { asset } from '../utils/asset'
+
+const donateBg = asset('images/bg/donate.jpg')
 
 const login = ref('')
 const email = ref('')
@@ -127,7 +130,11 @@ onUnmounted(() => {
     <Header @toast="showToast" />
 
     <main class="donate-main">
-      <div class="donate-bg" aria-hidden="true"></div>
+      <div
+        class="donate-bg"
+        aria-hidden="true"
+        :style="{ '--donate-photo': `url(${donateBg})` }"
+      ></div>
 
       <h1 class="donate-title">Пополнение</h1>
 
@@ -352,7 +359,7 @@ onUnmounted(() => {
   background:
     radial-gradient(ellipse 70% 50% at 50% -10%, rgba(255, 110, 105, 0.18), transparent 55%),
     radial-gradient(ellipse 40% 40% at 90% 80%, rgba(255, 176, 112, 0.08), transparent 50%),
-    url('/images/bg/donate.jpg') center / cover no-repeat;
+    var(--donate-photo) center / cover no-repeat;
   opacity: 0.35;
   filter: saturate(0.85);
 }

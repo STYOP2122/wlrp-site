@@ -1,14 +1,35 @@
 <script setup>
-import { MULTIPLAYER_DOWNLOAD, VIDEO_URL, BRAND } from '../config/servers'
+import { MULTIPLAYER_DOWNLOAD, VIDEO_URL, BRAND, SERVERS } from '../config/servers'
 import { useFitScale } from '../composables/useFitScale'
+import { asset } from '../utils/asset'
 
 const emit = defineEmits(['open-video'])
 
 useFitScale('.content__slide__playing', '.slide-content_playing')
 
+const playImages = [
+  asset('images/content/play_1.png'),
+  asset('images/content/play_2.png'),
+  asset('images/content/play_3.png'),
+]
+
+const serverIp = SERVERS[0]?.fallbackIp || '147.45.38.102:7777'
+const sampConnect = `samp://${serverIp}`
+
 function downloadClient(e) {
   e.preventDefault()
   window.location = MULTIPLAYER_DOWNLOAD
+}
+
+async function connectServer(e) {
+  e.preventDefault()
+  try {
+    await navigator.clipboard.writeText(serverIp)
+  } catch {
+    // ignore
+  }
+  // Try native SA-MP protocol handler when available
+  window.location.href = sampConnect
 }
 </script>
 
@@ -47,7 +68,7 @@ function downloadClient(e) {
       <div class="page__width__play">
         <div class="container__play">
           <div class="container_item__play">
-            <img alt="content" src="/images/content/play_1.png" />
+            <img alt="content" :src="playImages[0]" />
             <div class="block">
               <h3 class="block__heading">Установите GTA San Andreas</h3>
               <p class="block__content">
@@ -65,7 +86,7 @@ function downloadClient(e) {
             </a>
           </div>
           <div class="container_item__play">
-            <img alt="content" src="/images/content/play_2.png" />
+            <img alt="content" :src="playImages[1]" />
             <div class="block">
               <h3 class="block__heading">Установите клиент SA-MP</h3>
               <p class="block__content">
@@ -81,7 +102,7 @@ function downloadClient(e) {
             </a>
           </div>
           <div class="container_item__play">
-            <img alt="content" src="/images/content/play_3.png" />
+            <img alt="content" :src="playImages[2]" />
             <div class="block">
               <h3 class="block__heading">Подключитесь к Westland</h3>
               <p class="block__content">
@@ -91,8 +112,9 @@ function downloadClient(e) {
             </div>
             <a
               class="btn__play gradient_btn__orange"
-              href="#"
+              :href="sampConnect"
               style="background: rgba(255, 255, 255, 0.16); box-shadow: none; color: #fff"
+              @click="connectServer"
             >
               <span class="ic__chain"></span> Подключиться на сервер
             </a>
