@@ -5,6 +5,9 @@ const REF_W = 1920
 const REF_H = 1080
 const MIN_SCALE = 0.55
 
+/** Every visual layer inside a section — must scale together. */
+const SECTION_LAYERS = ':scope > .pxl, :scope > .bg-play, :scope > .slide-content'
+
 function viewportSize() {
   const vv = window.visualViewport
   return {
@@ -13,9 +16,14 @@ function viewportSize() {
   }
 }
 
+function clearLayerStyles(layer) {
+  layer.style.transform = ''
+  layer.style.transformOrigin = ''
+}
+
 /**
- * Smaller desktops: scale .slide-content down so the page looks like 1920×1080, just smaller.
- * At 1920×1080 (or larger): scale = 1, no class, no transform — pixel-identical to today.
+ * Smaller desktops: scale all section layers together (bg + content).
+ * At 1920×1080: scale = 1, no transform — identical to the reference layout.
  */
 export function applyViewportScale() {
   const sections = document.querySelectorAll('#fullpage .section')
@@ -23,11 +31,7 @@ export function applyViewportScale() {
   if (!isDesktopLayout()) {
     sections.forEach((section) => {
       section.classList.remove('wl-viewport-scaled')
-      const content = section.querySelector(':scope > .slide-content')
-      if (content) {
-        content.style.transform = ''
-        content.style.transformOrigin = ''
-      }
+      section.querySelectorAll(SECTION_LAYERS).forEach(clearLayerStyles)
     })
     return
   }
@@ -37,19 +41,17 @@ export function applyViewportScale() {
   const needsScale = scale < 0.999
 
   sections.forEach((section) => {
-    const content = section.querySelector(':scope > .slide-content')
+    const layers = section.querySelectorAll(SECTION_LAYERS)
     section.classList.toggle('wl-viewport-scaled', needsScale)
 
-    if (!content) return
-
-    if (!needsScale) {
-      content.style.transform = ''
-      content.style.transformOrigin = ''
-      return
-    }
-
-    content.style.transformOrigin = 'top center'
-    content.style.transform = `scale(${scale})`
+    layers.forEach((layer) => {
+      if (!needsScale) {
+        clearLayerStyles(layer)
+        return
+      }
+      layer.style.transformOrigin = 'top center'
+      layer.style.transform = `scale(${scale})`
+    })
   })
 }
 

@@ -1,9 +1,6 @@
 <script setup>
-import { useFitScale } from '../composables/useFitScale'
 import { BRAND } from '../config/servers'
 import { asset } from '../utils/asset'
-
-useFitScale('.content__slide__footer', '.footer-follow', { minScale: 0.78 })
 
 const contacts = [
   {

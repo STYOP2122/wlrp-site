@@ -1,11 +1,8 @@
 <script setup>
 import { MULTIPLAYER_DOWNLOAD, VIDEO_URL, BRAND, SERVERS } from '../config/servers'
-import { useFitScale } from '../composables/useFitScale'
 import { asset } from '../utils/asset'
 
 const emit = defineEmits(['open-video'])
-
-useFitScale('.content__slide__playing', '.slide-content_playing')
 
 const playImages = [
   asset('images/content/play_1.png'),

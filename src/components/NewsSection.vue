@@ -1,9 +1,6 @@
 <script setup>
-import { useFitScale } from '../composables/useFitScale'
 import { BRAND } from '../config/servers'
 import { asset } from '../utils/asset'
-
-useFitScale('.content__slide__news', '.slide-content_news')
 
 const news = [
   {
