@@ -1,0 +1,15 @@
+/**
+ * Viewport scale helper — only active when JS adds .wl-viewport-scaled (viewport < 1920×1080).
+ * Does NOT affect 1920×1080: no class, no extra rules.
+ */
+@media screen and (min-width: 1025px) {
+  #fullpage .section.wl-viewport-scaled .fp-tableCell {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+  }
+
+  #fullpage .section.wl-viewport-scaled > .slide-content {
+    transform-origin: top center !important;
+  }
+}

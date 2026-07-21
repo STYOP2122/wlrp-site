@@ -2,6 +2,7 @@ import { nextTick, onMounted, onUnmounted } from 'vue'
 import fullpage from 'fullpage.js'
 import { FULLPAGE_LICENSE } from '../config/servers'
 import { isDesktopLayout } from '../utils/breakpoints'
+import { scheduleViewportScale } from './useViewportScale'
 
 const ANCHORS = ['home', 'about-the-project', 'How-to-start-playing', 'news', 'footer']
 
@@ -105,13 +106,11 @@ export function useFullpage(containerSelector = '#fullpage') {
         })
         window.fullpage_api?.reBuild()
         window.dispatchEvent(new Event('resize'))
+        scheduleViewportScale()
       },
-      afterLoad(_origin, destination) {
+      afterLoad() {
         if (!isDesktopLayout()) return
-        window.dispatchEvent(new Event('resize'))
-        if (destination?.anchor === 'footer') {
-          window.dispatchEvent(new Event('resize'))
-        }
+        scheduleViewportScale()
       },
     })
     initialized = true
@@ -123,6 +122,7 @@ export function useFullpage(containerSelector = '#fullpage') {
       }
       window.fullpage_api?.reBuild()
       window.dispatchEvent(new Event('resize'))
+      scheduleViewportScale()
     }, 300)
   }
 
@@ -135,6 +135,7 @@ export function useFullpage(containerSelector = '#fullpage') {
     }
     if (desktop && wasDesktop) {
       window.fullpage_api?.reBuild()
+      scheduleViewportScale()
     } else if (desktop !== wasDesktop) {
       init()
     }
@@ -145,10 +146,12 @@ export function useFullpage(containerSelector = '#fullpage') {
     await nextTick()
     requestAnimationFrame(() => init())
     window.addEventListener('resize', onResize)
+    window.visualViewport?.addEventListener('resize', onResize)
   })
 
   onUnmounted(() => {
     window.removeEventListener('resize', onResize)
+    window.visualViewport?.removeEventListener('resize', onResize)
     destroy()
     document.documentElement.style.overflow = ''
     document.body.style.overflow = ''
