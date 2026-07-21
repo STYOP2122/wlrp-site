@@ -1,0 +1,490 @@
+/* Desktop: force art visible (legacy CSS used to hide it on short/laptop viewports) */
+@media screen and (min-width: 1025px) {
+  .pxl {
+    display: flex !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /*
+    Original RedAge character composition, bottom-anchored so the full
+    figures sit on the section floor (same relative offsets as main_v_4).
+    Stage height = right character bottom: -154 + 1000 = 846.
+  */
+  .per__main {
+    display: block !important;
+    position: absolute !important;
+    right: 0 !important;
+    top: auto !important;
+    bottom: 0 !important;
+    width: 46% !important;
+    height: 846px !important;
+    max-height: none !important;
+    overflow: visible !important;
+    z-index: 1 !important;
+    pointer-events: none;
+    transform-origin: right bottom !important;
+  }
+  .person__left,
+  .person__right {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    opacity: 1 !important;
+    transform: none !important;
+    min-height: 0 !important;
+  }
+  .person__left:after,
+  .person__right:before {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+  }
+  .person__img {
+    position: absolute !important;
+    display: block !important;
+    opacity: 1 !important;
+    pointer-events: none;
+    user-select: none;
+    max-width: none !important;
+    object-fit: contain !important;
+  }
+  /* Original person_1 */
+  .person__img--left {
+    width: 398px !important;
+    height: 881px !important;
+    left: -120px !important;
+    top: -34px !important;
+    right: auto !important;
+    bottom: auto !important;
+    z-index: 1;
+  }
+  /* Original person_2 */
+  .person__img--right {
+    width: 560px !important;
+    height: 1000px !important;
+    left: 117px !important;
+    top: -154px !important;
+    right: auto !important;
+    bottom: auto !important;
+    z-index: 2;
+  }
+
+  /* Original speech-bubble coords (relative to person__right / stage top) */
+  .dialog__left,
+  .dialog__right {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    z-index: 5 !important;
+    pointer-events: none;
+  }
+  .dialog__left .text__dialog,
+  .dialog__right .text__dialog,
+  .circle__left__a,
+  .circle__left__b,
+  .circle__right__a,
+  .circle__right__b {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .dialog__left .text__dialog {
+    left: 79px !important;
+    top: 101px !important;
+    bottom: auto !important;
+    right: auto !important;
+    width: 166px !important;
+    height: 68px !important;
+    z-index: 6 !important;
+  }
+  .dialog__right .text__dialog {
+    left: 405px !important;
+    top: 38px !important;
+    bottom: auto !important;
+    right: auto !important;
+    width: 151px !important;
+    height: 54px !important;
+    z-index: 6 !important;
+  }
+  .circle__left__a {
+    left: 252px !important;
+    top: 80px !important;
+    bottom: auto !important;
+    right: auto !important;
+  }
+  .circle__left__b {
+    left: 243px !important;
+    top: 89px !important;
+    bottom: auto !important;
+    right: auto !important;
+  }
+  .circle__right__a {
+    left: 388px !important;
+    top: 18px !important;
+    bottom: auto !important;
+    right: auto !important;
+  }
+  .circle__right__b {
+    left: 395px !important;
+    top: 27px !important;
+    bottom: auto !important;
+    right: auto !important;
+  }
+
+  .content__slide_home {
+    overflow: hidden !important;
+  }
+  .slide-main__bg {
+    display: block !important;
+  }
+  .content__slide_home .slick-slide {
+    display: block !important;
+  }
+  .content__slide_home .home__title.h1,
+  .content__slide_home .h1 {
+    font-size: clamp(42px, 6.2vh, 72px) !important;
+  }
+  .slide-content,
+  .slide-content_about,
+  .slide-content_playing,
+  .slide-content_news,
+  .slide-content_footer,
+  .footer-follow {
+    position: relative;
+    z-index: 2 !important;
+  }
+
+  .content__slide_home .video_play a::after {
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 4px !important;
+    right: 0 !important;
+    margin: auto !important;
+  }
+}
+
+/* Keep proportions on shorter / narrower desktops — scale whole stage together */
+@media screen and (min-width: 1025px) and (max-width: 1600px) {
+  .content__slide_home .per__main {
+    transform: scale(0.88) !important;
+    transform-origin: right bottom !important;
+  }
+}
+@media screen and (min-width: 1025px) and (max-width: 1280px) {
+  .content__slide_home .per__main {
+    transform: scale(0.8) !important;
+    transform-origin: right bottom !important;
+  }
+}
+@media screen and (min-width: 1025px) and (max-height: 900px) {
+  .content__slide_home .per__main {
+    transform: scale(0.82) !important;
+    transform-origin: right bottom !important;
+  }
+}
+@media screen and (min-width: 1025px) and (max-height: 800px) {
+  .content__slide_home .per__main {
+    transform: scale(0.72) !important;
+    transform-origin: right bottom !important;
+  }
+}
+@media screen and (min-width: 1025px) and (max-height: 720px) {
+  .content__slide_home .per__main {
+    transform: scale(0.64) !important;
+    transform-origin: right bottom !important;
+  }
+}
+
+/* fullpage wrapper must grow with sections — height:100% clips everything after home */
+#fullpage,
+.fullpage-wrapper,
+.content.fullpage-wrapper {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+:root {
+  --wl-bg: #0a0c0e;
+  --wl-bg-2: #12151a;
+  --wl-ink: #ffffff;
+  --wl-muted: #9aa3ad;
+  --wl-line: rgba(255, 255, 255, 0.14);
+  --wl-accent: #e8eef5;
+  --wl-accent-soft: rgba(232, 238, 245, 0.16);
+  --wl-warm: #c4a574;
+  --wl-grad: linear-gradient(90deg, #f2f5f8 0%, #c9d2dc 100%);
+  --wl-grad-warm: linear-gradient(90deg, #d9b07a 0%, #f0e2c8 100%);
+}
+
+/* Soften old orange brand accents toward Westland white/steel */
+.gradient_btn__orange,
+.btn.gradient_btn__orange,
+.primary_btn.gradient_btn__orange,
+.btn_rond_orange {
+  background: var(--wl-grad) !important;
+  color: #0a0c0e !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45) !important;
+  border: 0 !important;
+}
+.gradient_btn__orange:hover,
+.primary_btn.gradient_btn__orange:hover {
+  background-size: 200% auto !important;
+  filter: brightness(1.05);
+  box-shadow: none !important;
+}
+
+.nav__link.active,
+.nav__link:hover {
+  color: #fff !important;
+}
+.nav__link.active:after,
+.header .nav__link.active:before,
+.nav__link:hover:after {
+  background: #fff !important;
+  background-image: none !important;
+}
+
+.logo {
+  background: url('../images/logo.png') no-repeat left center / contain !important;
+  width: 200px !important;
+  height: 44px !important;
+  display: block !important;
+}
+
+@media (min-width: 1200px) {
+  .logo {
+    width: 230px !important;
+    height: 50px !important;
+  }
+}
+
+.content__slide_home .h1,
+.content__slide_home .home__title {
+  color: #fff !important;
+}
+
+.content__slide_home .h2__home {
+  color: var(--wl-muted) !important;
+}
+
+/* Play cards accents */
+.container_item__play .block__content span {
+  border-left-color: #c4a574 !important;
+}
+
+/* Play section desktop: character, video-in-circle, original step arrows */
+@media screen and (min-width: 1025px) {
+  /* Legacy CSS hides play art below 1900px — show and fit it */
+  .content__slide__playing {
+    position: relative !important;
+  }
+  .content__slide__playing .bg-play {
+    display: block !important;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .content__slide__playing .bg-play:after {
+    display: block !important;
+    content: "" !important;
+    position: absolute;
+    left: -40px;
+    bottom: 0;
+    width: min(460px, 32vw);
+    height: min(100vh, 1020px);
+    background: url('../images/slide/play.png') no-repeat left bottom / contain;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Video CTA — real HTML, no sprite fighting */
+  .playing.slide-content__content {
+    justify-content: space-between !important;
+    width: 100%;
+    align-items: center !important;
+  }
+  .content__slide__playing .md_bt {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    padding-right: 0 !important;
+    position: relative;
+    z-index: 3;
+  }
+  /* Hide legacy sprite video block if anything left */
+  .content__slide__playing .video_play__play {
+    display: none !important;
+  }
+
+  .play-video-cta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+  }
+  .play-video-cta__text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    color: #fff;
+    font-size: 17px;
+    line-height: 1.35;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  .play-video-cta__text span {
+    font-weight: 400;
+    opacity: 0.92;
+  }
+  .play-video-cta__text strong {
+    font-family: UniNeueHeavy, UniNeueBold, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .play-video-cta__text::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: -12px;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #d9b07a 25%, #ffb972 100%);
+    border-radius: 2px;
+  }
+  .play-video-cta__btn {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 2px solid rgba(255, 185, 114, 0.85);
+    box-shadow: 0 0 0 6px rgba(255, 185, 114, 0.08);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    text-decoration: none;
+  }
+  .play-video-cta__btn:hover {
+    background: rgba(255, 185, 114, 0.12);
+    border-color: #ffc58a;
+    box-shadow: 0 0 0 8px rgba(255, 185, 114, 0.14);
+  }
+  .play-video-cta__play {
+    display: block;
+    width: 0;
+    height: 0;
+    margin-left: 3px;
+    border-style: solid;
+    border-width: 10px 0 10px 16px;
+    border-color: transparent transparent transparent #fff;
+  }
+
+  /* Step arrows — original RedAge geometry (top:25 + bottom:0 centers on g_* cutout) */
+  .container__play {
+    gap: 0 !important;
+  }
+  .container_item__play {
+    overflow: visible !important;
+    background-color: transparent !important;
+  }
+  .container_item__play--1 {
+    z-index: 3;
+    background-image: url('../images/g_1.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: cover !important;
+  }
+  .container_item__play--2 {
+    z-index: 2;
+    background-image: url('../images/g_2.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: cover !important;
+  }
+  .container_item__play--3 {
+    z-index: 1;
+    background-image: url('../images/g_3.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: cover !important;
+  }
+  .container_item__play--3:before,
+  .container_item__play--3:after {
+    display: none !important;
+    content: none !important;
+  }
+  .container_item__play--1:before,
+  .container_item__play--2:before {
+    display: none !important;
+    content: none !important;
+  }
+  .container_item__play--1:after,
+  .container_item__play--2:after {
+    content: "" !important;
+    display: block !important;
+    position: absolute !important;
+    top: 25px !important;
+    bottom: 0 !important;
+    right: -28px !important;
+    left: auto !important;
+    width: 18px !important;
+    height: 18px !important;
+    margin: auto 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M7 4.5L12.5 10L7 15.5' stroke='%23e8eef5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 16px 16px !important;
+    transform: none !important;
+    z-index: 9;
+    pointer-events: none;
+  }
+}
+
+/* Desktop: tighten sections on short / narrow viewports */
+@media screen and (min-width: 1025px) and (max-height: 900px) {
+  .content__slide__playing .bg-play:after {
+    width: min(380px, 34vw);
+    height: min(88vh, 900px);
+  }
+  .slide-content.slide-content_news.container {
+    padding-top: clamp(80px, 9vh, 110px) !important;
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1366px) {
+  .page__width__play {
+    max-width: 100%;
+  }
+}
+
+.footer-follow__card:hover {
+  border-color: rgba(232, 238, 245, 0.45) !important;
+}
+.footer-follow__card:hover .footer-follow__cta {
+  background: var(--wl-grad) !important;
+  color: #0a0c0e !important;
+  border-color: transparent !important;
+}
+.footer-follow__links a:hover {
+  color: #e8eef5 !important;
+}
+
+/* Donate accents if page loaded */
+.donate-page {
+  --don-accent: #e8eef5;
+  --don-accent-2: #c4a574;
+  --don-grad: linear-gradient(90deg, #f2f5f8, #c9d2dc);
+}
